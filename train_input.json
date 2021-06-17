@@ -1,0 +1,7 @@
+{
+  "X": [[0, 1, 1], [1, 0, 1], [1, 0, 1], [1, 0, 1], [1, 0, 1], [1, 0, 1]],
+  "y": [0, 0, 1, 0, 0, 1],
+  "seed": 0,
+  "model_path": "model.joblib",
+  "output_path": "train_output.json"
+}
