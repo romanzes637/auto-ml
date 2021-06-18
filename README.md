@@ -35,3 +35,27 @@ Field ```"y_pred"``` in "output_path" is predicted classes
 
 
 
+# Docker
+
+## Build 
+
+docker build -t auto-ml-app .
+
+## Train 
+
+docker run -it \
+-v "$(pwd)"/output:/usr/src/output \
+-w /usr/src/output \
+-v "$(pwd)"/train_input.json:/usr/src/input/train_input.json \
+auto-ml-app python /usr/src/app/train.py -i /usr/src/input/train_input.json
+
+
+## Predict 
+
+docker run -it \
+-v "$(pwd)"/output:/usr/src/output \
+-w /usr/src/output \
+-v "$(pwd)"/predict_input.json:/usr/src/input/predict_input.json \
+-v "$(pwd)"/output/model.joblib:/usr/src/input/model.joblib \
+auto-ml-app python /usr/src/app/predict.py -i /usr/src/input/predict_input.json
+
