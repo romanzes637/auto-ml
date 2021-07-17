@@ -55,7 +55,7 @@ pip install -r requirements_mmdet.txt
 python get_mmdet_configs.py
 ```
 
-# Run
+# Run MMDET
 ## Train
 ```
 python make_coco.py (once per dataset)
@@ -92,3 +92,5 @@ docker run -it \
 -v "$(pwd)"/output/model.joblib:/usr/src/input/model.joblib \
 auto-ml-app python /usr/src/app/predict.py -i /usr/src/input/predict_input.json
 
+# Docker MMDET
+See https://github.com/open-mmlab/mmdetection/tree/master/docker
