@@ -33,7 +33,40 @@ Script generates ```"output_path"``` from predict_input.json
 
 Field ```"y_pred"``` in "output_path" is predicted classes
 
+# Installation MMDET
+## Prerequisites
+* Linux or macOS (Windows is in experimental support)
+* Python 3.6+
+* PyTorch 1.3+
+* CUDA 9.2+ (If you build PyTorch from source, CUDA 9.0 is also compatible)
+* GCC 5+
+* MMCV
+https://github.com/open-mmlab/mmdetection/blob/master/docs/get_started.md
 
+## Install python 3
+System dependent, see https://www.python.org/downloads/
+
+## Install python packages with built-in package manager pip
+```
+pip install -r requirements_mmdet.txt
+```
+## Get mmdet configs
+```
+python get_mmdet_configs.py
+```
+
+# Run
+## Train
+```
+python make_coco.py (once per dataset)
+
+python train_mmdet.py
+```
+
+## Inference
+```
+python inference_mmdet.py
+```
 
 # Docker
 
