@@ -1,0 +1,8 @@
+{
+  "checkpoint": "work/latest.pth",
+  "config": "configs/cascade_rcnn/new.py",
+  "img": "test.jpg",
+  "score_thr": 0.5,
+  "output": "result.jpg",
+  "device": "cuda:0"
+}

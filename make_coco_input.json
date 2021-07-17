@@ -1,0 +1,12 @@
+{
+  "train_file": "train_coco.json",
+  "val_file": "val_coco.json",
+  "test_file": "test_coco.json",
+  "dataset_dir": "dataset_coco",
+  "train_dir": "train",
+  "val_dir": "val",
+  "test_dir": "test",
+  "img_dir": "images" ,
+  "url_key": "coco_url",
+  "file_name_key": "file_name"
+}
