@@ -1,3 +1,42 @@
+"""Make COCO dataset by COCO files
+
+Make COCO dateset from 3 COCO files: train, val and test:
+1. Make directory tree
+2. Download images from "image" field of COCO files to img_dir
+
+Example:
+    python make_coco.py
+    
+Attributes:
+    train_file (str): COCO file for train data
+    val_file (str): COCO file for val data
+    test_file (str): COCO file for test data
+
+Dataset structure:
+dataset_root
+|__ train_dir
+   |__ train_file
+   |__ img_dir
+      |__ image1
+      |__ image2
+      |__ image3
+      |__ ...
+|__ val_dir
+   |__ val_file
+   |__ img_dir
+      |__ image1
+      |__ image2
+      |__ image3
+      |__ ...
+|__ test_dir
+   |__ test_file
+   |__ img_dir
+      |__ image1
+      |__ image2
+      |__ image3
+      |__ ...
+"""
+
 from pathlib import Path
 import shutil
 import json
@@ -11,7 +50,7 @@ val_file = 'val_coco.json'
 test_file = 'test_coco.json'
 
 dataset_root = 'dataset_coco'  # Dataset dir
-train_dir = 'train'  # Dir at dataset_root for traing data (images and COCO file) 
+train_dir = 'train'  # Dir at dataset_root for train data (images and COCO file) 
 val_dir = 'val'  # Dir at dataset_root for val data (images and COCO file) 
 test_dir = 'test'  # Dir  at dataset_root for test data (images and COCO file)
 img_dir = 'images'  # Dir at train_dir, val_dir and test_dir for images
