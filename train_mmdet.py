@@ -5,8 +5,9 @@ from pprint import pprint
 import json
 
 from mmcv import Config
-from mmdet.apis import set_random_seed
-
+from mmdet.apis import set_random_seed, train_detector
+from mmdet.datasets import build_dataset
+from mmdet.models import build_detector
 
 # Get classes
 def get_classes(coco_file):
