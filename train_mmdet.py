@@ -165,7 +165,7 @@ if __name__ == '__main__':
     # # The original learning rate (LR) is set for 8-GPU training.
     # # We divide it by 8 since we only use one GPU.
     cfg.optimizer.lr = 0.02 / 8
-    cfg.lr_config.policy = 'cyclic'  # described in https://arxiv.org/pdf/1506.01186.pdf
+    cfg.lr_config.policy = 'step'  # described in https://arxiv.org/pdf/1506.01186.pdf
     cfg.lr_config.warmup = None
     cfg.log_config.interval = 10
     # # Change the evaluation metric since we use customized dataset.
