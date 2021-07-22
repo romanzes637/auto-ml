@@ -122,7 +122,7 @@ Based on [MMDetection docker](https://github.com/open-mmlab/mmdetection/tree/mas
 [What is the difference between CUDA, CUDNN, CUDA Driver, CUDA Toolkit, and NCVV?](https://www.programmersought.com/article/57794836777/)
 
 ### Build
-#### Change Dockerfile_mmdet ARGs according to host lib versions (see Dockerfile_mmdet)
+#### Change Dockerfile_mmdet ARGs according to host lib versions (see [Dockerfile_mmdet](https://github.com/romanzes637/auto-ml/blob/main/Dockerfile_mmdet))
 ```dockerfile
 ARG PYTORCH="1.8.0"
 ARG CUDA="11.1"
