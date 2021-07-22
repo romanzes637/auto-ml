@@ -6,7 +6,7 @@ import os
 if __name__ == '__main__':
     url = 'https://github.com/open-mmlab/mmdetection/archive/refs/heads/master.zip'
     file_name = 'mmdetection.zip'
-    configs_dir = 'configs'
+    configs_dir = 'data/configs'
     urllib.request.urlretrieve(url, file_name)
     with zipfile.ZipFile(file_name, 'r') as f:
         f.extractall()
