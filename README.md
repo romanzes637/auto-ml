@@ -65,8 +65,8 @@ docker run -it \
 # Computer Vision
 Based on
 
-* MMCV (https://github.com/open-mmlab/mmcv)
-* MMDetection (https://github.com/open-mmlab/mmdetection)
+* [MMCV](https://github.com/open-mmlab/mmcv)
+* [MMDetection](https://github.com/open-mmlab/mmdetection)
 
 ## Installation
 ### Prerequisites
