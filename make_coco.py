@@ -52,7 +52,7 @@ def get_images(coco_file, img_dir, url_key, file_name_key):
     with open(coco_file) as f:
         data = json.load(f)
     img_dir.mkdir(parents=True, exist_ok=True)
-    for image in tqdm(data['images']):
+    for image in data['images']:
         urllib.request.urlretrieve(image[url_key], img_dir / image[file_name_key])
 
 
