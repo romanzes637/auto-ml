@@ -45,8 +45,6 @@ import urllib.request
 import argparse
 from pprint import pprint
 
-from tqdm import tqdm
-
 
 def get_images(coco_file, img_dir, url_key, file_name_key):
     """Get dataset images
