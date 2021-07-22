@@ -2,7 +2,7 @@
 Just another AutoML implementation...
 
 # MLP Classifier (MultiLayer Perceptron)
-https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
+Based on [scikit-learn MLPClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html)
 
 ## Installation
 ### Install python 3
@@ -39,27 +39,32 @@ Field ```"y_pred"``` in "output_path" is predicted classes
 ## Docker
 
 ### Build 
-
+```
 docker build -t auto-ml-app .
+```
 
 ### Train 
-
+```bash
 docker run -it \
--v "$(pwd)"/output:/usr/src/output \
--w /usr/src/output \
--v "$(pwd)"/train_input.json:/usr/src/input/train_input.json \
-auto-ml-app python /usr/src/app/train.py -i /usr/src/input/train_input.json
+           -v "$(pwd)"/output:/usr/src/output \
+           -w /usr/src/output \
+           -v "$(pwd)"/train_input.json:/usr/src/input/train_input.json \
+           auto-ml-app python /usr/src/app/train.py -i /usr/src/input/train_input.json
+```
 
 ### Predict 
-
+```bash
 docker run -it \
--v "$(pwd)"/output:/usr/src/output \
--w /usr/src/output \
--v "$(pwd)"/predict_input.json:/usr/src/input/predict_input.json \
--v "$(pwd)"/output/model.joblib:/usr/src/input/model.joblib \
-auto-ml-app python /usr/src/app/predict.py -i /usr/src/input/predict_input.json
+           -v "$(pwd)"/output:/usr/src/output \
+           -w /usr/src/output \
+           -v "$(pwd)"/predict_input.json:/usr/src/input/predict_input.json \
+           -v "$(pwd)"/output/model.joblib:/usr/src/input/model.joblib \
+           auto-ml-app python /usr/src/app/predict.py -i /usr/src/input/predict_input.json
+```
 
 # Computer Vision
+Based on
+
 * MMCV (https://github.com/open-mmlab/mmcv)
 * MMDetection (https://github.com/open-mmlab/mmdetection)
 
@@ -81,32 +86,40 @@ System dependent (see https://www.python.org/downloads/)
 ```
 pip install -r requirements_mmdet.txt
 ```
-### Get MMDET configs
+
+## Train
+### Prepare data in `data` directory (Example)
 ```
-python get_mmdet_configs.py
+python get_mmdet_configs.py 
+python make_coco.py -i make_coco_input.json
 ```
 
-## Run
-### Train
+### Run
 ```
-python make_coco.py -i make_coco_input.json (once per dataset)
-
 python train_mmdet.py -i train_mmdet_input.json
 ```
+Results will be in `data/works` directory
 
-### Inference
+## Inference
+### Prepare data in `data` directory (Example, also requires config and checkpoint file from trained model)
+```
+cp test.jpg data/test.jpg
+```
+
+### Run
 ```
 python inference_mmdet.py -i inference_mmdet_input.json
 ```
+Results will be in `data` directory (`result.jpg` by default)
 
 ## Docker
-Based on MMDetection docker (https://github.com/open-mmlab/mmdetection/tree/master/docker)
+Based on [MMDetection docker](https://github.com/open-mmlab/mmdetection/tree/master/docker)
 
 ### Prerequisites
-* [CUDA Driver](see https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html) or [CUDA Toolkit](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
-* NVIDIA Container Toolkit (see https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+* [CUDA Driver](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html) or [CUDA Toolkit](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) (CUDA Driver included)
+* [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
-What is the difference between CUDA, CUDNN, CUDA Driver, CUDA Toolkit, and NCVV? (https://www.programmersought.com/article/57794836777/)
+[What is the difference between CUDA, CUDNN, CUDA Driver, CUDA Toolkit, and NCVV?](https://www.programmersought.com/article/57794836777/)
 
 ### Build
 #### Change Dockerfile_mmdet ARGs according to host lib versions (see Dockerfile_mmdet)
@@ -182,7 +195,10 @@ data
 
 #### Run
 ```bash
-docker run --gpus all --shm-size 8G -v "$(pwd)"/data:/auto-ml/data -v "$(pwd)"/train_mmdet_input.json:/auto-ml/train_mmdet_input.json auto-ml-mmdet python train_mmdet.py
+docker run --gpus all --shm-size 8G \
+           -v "$(pwd)"/data:/auto-ml/data \
+           -v "$(pwd)"/train_mmdet_input.json:/auto-ml/train_mmdet_input.json \
+           auto-ml-mmdet python train_mmdet.py
 ```
 * `--gpus all` - GPU devices to add to the container ('all' to pass all GPUs)
 * `--shm-size 8G` - Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m (megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m.
@@ -198,10 +214,12 @@ Results will be in `data/works` directory
 cp test.jpg data/test.jpg
 ```
 
-
 #### Run
 ```bash
-docker run --gpus all --shm-size 8G -v "$(pwd)"/data:/auto-ml/data -v "$(pwd)"/inference_mmdet_input.json:/auto-ml/inference_mmdet_input.json auto-ml-mmdet python inference_mmdet.py
+docker run --gpus all --shm-size 8G \
+           -v "$(pwd)"/data:/auto-ml/data \
+           -v "$(pwd)"/inference_mmdet_input.json:/auto-ml/inference_mmdet_input.json \
+           auto-ml-mmdet python inference_mmdet.py
 ```
 * `--gpus all` - GPU devices to add to the container ('all' to pass all GPUs)
 * `--shm-size 8G` - Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m (megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m.
