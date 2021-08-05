@@ -208,7 +208,7 @@ data
 docker run --gpus all --shm-size 8G \
            -v "$(pwd)"/data:/auto-ml/data \
            -v "$(pwd)"/train_mmdet_input.json:/auto-ml/train_mmdet_input.json \
-           auto-ml-mmdet python train_mmdet.py
+           auto-ml-mmdet python3 train_mmdet.py
 ```
 * `--gpus all` - GPU devices to add to the container ('all' to pass all GPUs)
 * `--shm-size 8G` - Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m (megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m.
@@ -229,7 +229,7 @@ cp test.jpg data/test.jpg
 docker run --gpus all --shm-size 8G \
            -v "$(pwd)"/data:/auto-ml/data \
            -v "$(pwd)"/inference_mmdet_input.json:/auto-ml/inference_mmdet_input.json \
-           auto-ml-mmdet python inference_mmdet.py
+           auto-ml-mmdet python3 inference_mmdet.py
 ```
 * `--gpus all` - GPU devices to add to the container ('all' to pass all GPUs)
 * `--shm-size 8G` - Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m (megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m.

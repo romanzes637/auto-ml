@@ -3,6 +3,8 @@ import urllib.request
 import argparse
 from pprint import pprint
 import json
+import torch
+
 
 from mmcv import Config
 from mmdet.apis import set_random_seed, train_detector
@@ -192,4 +194,11 @@ if __name__ == '__main__':
     # Add an attribute for visualization convenience
     model.CLASSES = classes
 
+    print("CUDA CHECK")
+    torch.cuda.is_available()
+    torch.cuda.current_device()
+    torch.cuda.device(0)
+    torch.cuda.device_count()
+    torch.cuda.get_device_name(0)
+    print("START STUDY")
     train_detector(model, datasets, cfg, distributed=False, validate=True)
