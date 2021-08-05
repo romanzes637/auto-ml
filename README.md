@@ -62,6 +62,16 @@ docker run -it \
            auto-ml-app python /usr/src/app/predict.py -i /usr/src/input/predict_input.json
 ```
 
+### Save and load
+
+docker save auto-ml-app | gzip > auto-ml-app.tar.gz
+
+cat auto-ml-app.tar.gz | docker import - auto-ml-app:latest
+
+docker load < auto-ml-app.tar.gz
+
+
+
 # Computer Vision
 Based on
 
@@ -228,3 +238,11 @@ docker run --gpus all --shm-size 8G \
 * `python inference_mmdet.py` - run inference script
    
 Results will be in `data` directory (`result.jpg` by default)
+
+### Save and load
+
+docker save auto-ml-mmdet | gzip > ../auto-ml-mmdet.tar.gz
+
+cat auto-ml-mmdet.tar.gz | docker import - auto-ml-mmdet:latest
+
+docker load < auto-ml-mmdet.tar.gz
