@@ -237,7 +237,35 @@ docker run --gpus all --shm-size 8G \
 * `-v "$(pwd)"/inference_mmdet_input.json:/auto-ml/inference_mmdet_input.json` - mount host inference config `"$(pwd)"/inference_mmdet_input.json` to container inference config `/auto-ml/inference_mmdet_input.json auto-ml-mmdet`
 * `python inference_mmdet.py` - run inference script
    
-Results will be in `data` directory (`result.jpg` by default)
+Results will be in `data` directory (`result.jpg` and `result.json`by default)
+
+JSON result format:    
+```
+array
+|__ bboxes
+    |__ class1
+        |__ bbox1
+           |__ x
+           |__ y
+           |__ width
+           |__ height
+           |__ score
+        |__ bbox2
+        |__ bbox3
+        |__ ...
+    |__ class2
+    |__ class3
+    ...
+|__ segms
+    |__ class1
+        |__ segm1 (boolean 2D array with size height x width)
+        |__ segm2
+        |__ segm3
+        ... equals number of bboxes for corresponding class
+    |__ class2
+    |__ class3
+    |__ ...
+```      
 
 ### Save and load
 
