@@ -4,5 +4,6 @@
   "img": "data/test.jpg",
   "score_thr": 0.5,
   "output": "data/result.jpg",
+  "output_json": "data/result.json",
   "device": "cuda:0"
 }
