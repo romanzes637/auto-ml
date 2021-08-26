@@ -143,7 +143,7 @@ ARG MMDET="2.13.0"
 ```
 #### Build image
 ```bash
-docker build -t auto-ml-mmdet -f Dockerfile_mmdet . 
+docker build -t auto-ml-mmdet -f Dockerfile_mmdet_2 . 
 ```
 
 ### Train
